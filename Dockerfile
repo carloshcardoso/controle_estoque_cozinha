@@ -3,7 +3,7 @@
 FROM python:3.8-slim
 
 # Definir o diretório de trabalho no container
-WORKDIR /app
+WORKDIR /
 
 # Copiar os arquivos de requisitos primeiro, para aproveitar o cache do Docker
 COPY requirements.txt .
@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para executar a aplicação
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run"]
