@@ -1,12 +1,22 @@
+
 from flask import Flask, render_template, request, redirect, url_for
-import db
+import sqlite3
 
 app = Flask(__name__)
 
+def conectar():
+    return sqlite3.connect('estoque.db')
+
 @app.route('/')
 def index():
-    itens_estoque = db.obter_itens_estoque()
-    return render_template('index.html', itens=itens_estoque)
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute('SELECT produto, categoria, quantidade, data_validade, valor FROM estoque')
+    itens = cursor.fetchall()
+    conexao.close()
+    # Transforma os itens em uma lista de dicionários para facilitar o acesso pelos nomes das colunas no template
+    itens_dict = [{'produto': item[0], 'categoria': item[1], 'quantidade': item[2], 'data_validade': item[3], 'valor': item[4]} for item in itens]
+    return render_template('index.html', itens=itens_dict)
 
 @app.route('/estoque', methods=['GET', 'POST'])
 def estoque():
@@ -24,3 +34,6 @@ def estoque():
             db.remover_item(produto)
         return redirect(url_for('index'))
     return render_template('estoque_form.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
