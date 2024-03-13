@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,24 @@
 </head>
 <body>
     <h1>Itens no Estoque</h1>
-    <!-- Aqui você pode adicionar uma tabela ou lista para exibir os itens -->
+    <table border="1">
+        <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Data de Validade</th>
+            <th>Valor (R$)</th>
+        </tr>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item.produto }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.data_validade }}</td>
+            <td>{{ item.valor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
     <a href="/estoque">Gerenciar Estoque</a>
 </body>
 </html>
