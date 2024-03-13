@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Estoque</title>
+</head>
+<body>
+    <h1>Adicionar/Atualizar/Remover Item</h1>
+    <form action="/estoque" method="post">
+        <input type="text" name="produto" placeholder="Produto" required>
+        <input type="text" name="categoria" placeholder="Categoria" required>
+        <input type="number" name="quantidade" placeholder="Quantidade" required>
+        <input type="text" name="data_validade" placeholder="Data de Validade" required>
+        <input type="text" name="valor" placeholder="Valor (R$)" required>
+        <button type="submit" name="adicionar">Adicionar</button>
+        <button type="submit" name="atualizar">Atualizar</button>
+        <button type="submit" name="remover">Remover</button>
+    </form>
+    <a href="/">Voltar</a>
+</body>
+</html>
